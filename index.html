@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Levi | Portfólio</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: rgba(16, 26, 45, 0.72);
+      --panel: rgba(10, 20, 36, 0.82);
+      --panel-2: rgba(15, 27, 48, 0.9);
+      --text: #edf4ff;
+      --muted: #9fb0c9;
+      --primary: #69e2ff;
+      --primary-2: #7f8cff;
+      --accent: #7dffbd;
+      --border: rgba(255,255,255,0.09);
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(105, 226, 255, 0.12), transparent 26%),
+        radial-gradient(circle at 85% 15%, rgba(127, 140, 255, 0.13), transparent 22%),
+        radial-gradient(circle at bottom right, rgba(125, 255, 189, 0.08), transparent 18%),
+        linear-gradient(180deg, #06101d 0%, #07111f 35%, #091726 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.05;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 30px 30px;
+      mask-image: radial-gradient(circle at center, black, transparent 90%);
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(18px);
+      background: rgba(5, 11, 22, 0.5);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-badge {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(105, 226, 255, 0.22), rgba(127, 140, 255, 0.25));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      font-size: 0.95rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      padding: 10px 14px;
+      border-radius: 999px;
+      transition: 0.25s ease;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .hero {
+      padding: 72px 0 36px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-main {
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      inset: auto -20% -30% auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(105,226,255,0.24), transparent 70%);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--primary);
+      background: rgba(105,226,255,0.08);
+      border: 1px solid rgba(105,226,255,0.16);
+      padding: 8px 12px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 4.5vw, 4.8rem);
+      line-height: 0.96;
+      margin: 0 0 18px;
+      letter-spacing: -0.05em;
+      max-width: 11ch;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary), #c6e7ff 45%, var(--primary-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 1.04rem;
+      max-width: 65ch;
+    }
+
+    .hero-actions {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, rgba(105, 226, 255, 0.18), rgba(127, 140, 255, 0.24));
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    .hero-side {
+      padding: 24px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .stat {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.7rem;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .terminal {
+      background: #06101d;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 18px;
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: #bde7f3;
+      overflow: auto;
+    }
+
+    .terminal .prompt { color: var(--accent); }
+    .terminal .highlight { color: var(--primary); }
+
+    section {
+      padding: 26px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.5rem, 2.7vw, 2.4rem);
+      letter-spacing: -0.04em;
+    }
+
+    .section-head p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      max-width: 58ch;
+      line-height: 1.7;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .panel {
+      padding: 26px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .chip {
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      color: #dfe9f8;
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.92rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+      margin-top: 6px;
+    }
+
+    .timeline-item {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .timeline-item strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .timeline-item span {
+      color: var(--muted);
+      line-height: 1.65;
+      display: block;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .filter-btn {
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font: inherit;
+      transition: 0.2s ease;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      color: var(--text);
+      background: rgba(105,226,255,0.12);
+      border-color: rgba(105,226,255,0.2);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .project-card {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(105,226,255,0.18);
+    }
+
+    .project-top {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .project-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(105,226,255,0.15), rgba(127,140,255,0.18));
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 1.1rem;
+    }
+
+    .project-card h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+      flex: 1;
+    }
+
+    .project-links,
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .text-link {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .blog-card {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .blog-cover {
+      aspect-ratio: 16 / 8;
+      background:
+        linear-gradient(135deg, rgba(105,226,255,0.18), rgba(127,140,255,0.12)),
+        linear-gradient(120deg, #0b1b31, #0e2340);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+    }
+
+    .blog-cover::after {
+      content: "// post";
+      position: absolute;
+      right: 16px;
+      bottom: 14px;
+      color: rgba(255,255,255,0.45);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.82rem;
+    }
+
+    .blog-body {
+      padding: 20px;
+    }
+
+    .blog-meta {
+      display: inline-block;
+      color: var(--primary);
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+
+    .blog-body h3 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+    }
+
+    .blog-body p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .contact-box {
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 10px 0 0;
+    }
+
+    footer {
+      padding: 22px 0 48px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 1050px) {
+      .hero,
+      .about-grid,
+      .contact-box,
+      .projects-grid,
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .hero-main,
+      .hero-side,
+      .panel,
+      .contact-box {
+        padding: 22px;
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      h1 { max-width: 100%; }
+    }
+
+    @media (max-width: 520px) {
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+
+  <div class="nav-wrap">
+    <div class="container">
+      <nav>
+        <a href="#top" class="brand">
+          <span class="brand-badge">⚙</span>
+          <span>LEVI<span style="color: var(--primary);">.DEV</span></span>
+        </a>
+
+        <div class="nav-links">
+          <a href="#sobre">Sobre</a>
+          <a href="#projetos">Projetos</a>
+          <a href="#blog">Blog</a>
+          <a href="#contato">Contato</a>
+          <a href="https://github.com/seuusuario" target="_blank" rel="noreferrer">GitHub ↗</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <main id="top" class="container">
+    <section class="hero">
+      <div class="card hero-main">
+        <div class="eyebrow">🚀 Desenvolvedor • Explorador • Criador</div>
+        <h1>
+          Eu construo <span class="gradient-text">projetos úteis</span>, sistemas elegantes e experimentos nerds.
+        </h1>
+        <p>
+          Sou Levi. Curto programação, automação, segurança, ciência e a arte de transformar ideias caóticas em software funcional.
+          Este espaço reúne meus projetos, anotações técnicas e alguns experimentos em andamento — porque aprender construindo é infinitamente mais interessante.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projetos">Ver projetos</a>
+          <a class="btn btn-secondary" href="#blog">Ler posts</a>
+          <a class="btn btn-secondary" href="https://github.com/seuusuario" target="_blank" rel="noreferrer">Meu GitHub</a>
+        </div>
+      </div>
+
+      <aside class="card hero-side">
+        <div class="stat-grid">
+          <div class="stat">
+            <strong>12+</strong>
+            <span>Projetos publicados</span>
+          </div>
+          <div class="stat">
+            <strong>4</strong>
+            <span>Áreas favoritas</span>
+          </div>
+          <div class="stat">
+            <strong>∞</strong>
+            <span>Curiosidade técnica</span>
+          </div>
+          <div class="stat">
+            <strong>24/7</strong>
+            <span>Modo construção</span>
+          </div>
+        </div>
+
+        <div class="terminal">
+          <div><span class="prompt">levi@lab</span>:~$ whoami</div>
+          <div><span class="highlight">dev</span> / builder / problem solver</div>
+          <div><span class="prompt">levi@lab</span>:~$ stack --list</div>
+          <div>Python, Django, React, JS, Docker</div>
+          <div><span class="prompt">levi@lab</span>:~$ interests --show</div>
+          <div>automação, segurança, robótica, ciência</div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="sobre">
+      <div class="section-head">
+        <div>
+          <h2>Sobre mim</h2>
+          <p>
+            Uma introdução curta, sem o drama corporativo de sempre. Aqui entra sua apresentação, seus interesses e o tipo de problema que você gosta de resolver.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="card panel">
+          <h3>Perfil</h3>
+          <p>
+            Sou desenvolvedor com interesse forte em sistemas, automação, arquitetura de software, segurança e ciência aplicada. Gosto de entender como as coisas funcionam por baixo do capô e prefiro projetos que me forcem a aprender algo novo no processo.
+          </p>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">Django</span>
+            <span class="chip">React</span>
+            <span class="chip">Docker</span>
+            <span class="chip">APIs</span>
+            <span class="chip">Automação</span>
+            <span class="chip">Segurança</span>
+          </div>
+        </div>
+
+        <div class="card panel">
+          <h3>O que eu curto construir</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <strong>Sistemas web e plataformas</strong>
+              <span>Apps com frontend moderno, backend sólido, autenticação, permissões e integrações.</span>
+            </div>
+            <div class="timeline-item">
+              <strong>Ferramentas de automação</strong>
+              <span>Scripts, pipelines, bots e fluxos para reduzir trabalho repetitivo e acelerar análise.</span>
+            </div>
+            <div class="timeline-item">
+              <strong>Projetos experimentais</strong>
+              <span>Ideias envolvendo IA, segurança, quant, robótica ou qualquer coisa tecnicamente divertida.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos">
+      <div class="section-head">
+        <div>
+          <h2>Projetos em destaque</h2>
+          <p>
+            Cards preparados para você trocar pelos seus projetos reais. Já deixei uma filtragem simples em JavaScript para a página ficar menos morta que a maioria dos portfólios por aí.
+          </p>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="automation">Automação</button>
+        <button class="filter-btn" data-filter="security">Segurança</button>
+        <button class="filter-btn" data-filter="research">Pesquisa</button>
+      </div>
+
+      <div class="projects-grid">
+        <article class="card project-card" data-category="web">
+          <div class="project-top">
+            <div class="project-icon">🧩</div>
+            <span class="chip">Web App</span>
+          </div>
+          <h3>JuridicFlow</h3>
+          <p>
+            Plataforma para gestão jurídica com foco em produtividade, organização, automações e arquitetura multi-tenant.
+          </p>
+          <div class="chips">
+            <span class="chip">Django</span>
+            <span class="chip">React</span>
+            <span class="chip">PostgreSQL</span>
+          </div>
+          <div class="project-links">
+            <a class="text-link" href="https://github.com/seuusuario/juridicflow" target="_blank" rel="noreferrer">Repositório ↗</a>
+            <a class="text-link" href="#blog">Post técnico</a>
+          </div>
+        </article>
+
+        <article class="card project-card" data-category="automation">
+          <div class="project-top">
+            <div class="project-icon">🤖</div>
+            <span class="chip">Automação</span>
+          </div>
+          <h3>Bug Bounty Toolkit</h3>
+          <p>
+            Conjunto de scripts e fluxos para reconhecimento, organização de achados e experimentação com templates e pipelines.
+          </p>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">CLI</span>
+            <span class="chip">APIs</span>
+          </div>
+          <div class="project-links">
+            <a class="text-link" href="https://github.com/seuusuario/bug-bounty-toolkit" target="_blank" rel="noreferrer">Repositório ↗</a>
+            <a class="text-link" href="#blog">Como funciona</a>
+          </div>
+        </article>
+
+        <article class="card project-card" data-category="research">
+          <div class="project-top">
+            <div class="project-icon">📈</div>
+            <span class="chip">Pesquisa</span>
+          </div>
+          <h3>Quant Lab</h3>
+          <p>
+            Ambiente para backtests, testes de estratégia, análise de métricas e evolução de uma stack de trading sistemático.
+          </p>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">Pandas</span>
+            <span class="chip">Backtesting</span>
+          </div>
+          <div class="project-links">
+            <a class="text-link" href="https://github.com/seuusuario/quant-lab" target="_blank" rel="noreferrer">Repositório ↗</a>
+            <a class="text-link" href="#blog">Arquitetura</a>
+          </div>
+        </article>
+
+        <article class="card project-card" data-category="security">
+          <div class="project-top">
+            <div class="project-icon">🛡️</div>
+            <span class="chip">Segurança</span>
+          </div>
+          <h3>Vuln Playground</h3>
+          <p>
+            Ambiente experimental com aplicações vulneráveis para estudar exploração, mitigação e análise prática de falhas.
+          </p>
+          <div class="chips">
+            <span class="chip">Web Security</span>
+            <span class="chip">Labs</span>
+            <span class="chip">Docker</span>
+          </div>
+          <div class="project-links">
+            <a class="text-link" href="https://github.com/seuusuario/vuln-playground" target="_blank" rel="noreferrer">Repositório ↗</a>
+            <a class="text-link" href="#blog">Notas</a>
+          </div>
+        </article>
+
+        <article class="card project-card" data-category="web">
+          <div class="project-top">
+            <div class="project-icon">🛰️</div>
+            <span class="chip">Frontend</span>
+          </div>
+          <h3>Portfolio Engine</h3>
+          <p>
+            Template de portfólio e blog estático pensado para GitHub Pages, com foco em performance, visual moderno e personalização fácil.
+          </p>
+          <div class="chips">
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">JavaScript</span>
+          </div>
+          <div class="project-links">
+            <a class="text-link" href="https://github.com/seuusuario/portfolio-engine" target="_blank" rel="noreferrer">Repositório ↗</a>
+            <a class="text-link" href="#blog">Detalhes</a>
+          </div>
+        </article>
+
+        <article class="card project-card" data-category="automation">
+          <div class="project-top">
+            <div class="project-icon">⚗️</div>
+            <span class="chip">Experimento</span>
+          </div>
+          <h3>Lab Notes Parser</h3>
+          <p>
+            Ferramenta para organizar notas técnicas, estruturar documentação de projetos e gerar páginas estáticas a partir de markdown.
+          </p>
+          <div class="chips">
+            <span class="chip">Node.js</span>
+            <span class="chip">Markdown</span>
+            <span class="chip">Static Site</span>
+          </div>
+          <div class="project-links">
+            <a class="text-link" href="https://github.com/seuusuario/lab-notes-parser" target="_blank" rel="noreferrer">Repositório ↗</a>
+            <a class="text-link" href="#blog">Pipeline</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="blog">
+      <div class="section-head">
+        <div>
+          <h2>Blog estático</h2>
+          <p>
+            Aqui você pode publicar posts curtos sobre arquitetura, decisões de projeto, debugging, estrutura de repositórios ou qualquer experimento que valha documentar.
+          </p>
+        </div>
+      </div>
+
+      <div class="blog-grid">
+        <article class="card blog-card">
+          <div class="blog-cover"></div>
+          <div class="blog-body">
+            <span class="blog-meta">Arquitetura • 2026</span>
+            <h3>Como estruturei meu projeto principal</h3>
+            <p>
+              Um post explicando separação de camadas, decisões de stack, problemas encontrados e por que certos trade-offs fizeram sentido.
+            </p>
+            <a class="text-link" href="#">Ler post →</a>
+          </div>
+        </article>
+
+        <article class="card blog-card">
+          <div class="blog-cover"></div>
+          <div class="blog-body">
+            <span class="blog-meta">Devlog • 2026</span>
+            <h3>Do caos para um MVP funcional</h3>
+            <p>
+              Sobre transformar ideias demais e foco de menos em algo que realmente roda, entrega valor e pode ser melhorado aos poucos.
+            </p>
+            <a class="text-link" href="#">Ler post →</a>
+          </div>
+        </article>
+
+        <article class="card blog-card">
+          <div class="blog-cover"></div>
+          <div class="blog-body">
+            <span class="blog-meta">Notas técnicas • 2026</span>
+            <h3>Erros, logs e o prazer de caçar bugs</h3>
+            <p>
+              Um resumo de debugging prático: como investigar falhas sem entrar em pânico nem xingar metade da stack antes do tempo.
+            </p>
+            <a class="text-link" href="#">Ler post →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="card contact-box">
+        <div>
+          <div class="eyebrow">📡 Contato</div>
+          <h2 style="margin: 0; font-size: clamp(1.7rem, 3vw, 2.6rem); letter-spacing: -0.04em;">Vamos conectar ideias, código e projetos.</h2>
+          <p>
+            Se quiser conversar sobre projetos, colaboração, código, automação, segurança ou qualquer experimento tecnicamente interessante, aqui é o lugar.
+          </p>
+        </div>
+
+        <div class="socials">
+          <a class="btn btn-primary" href="mailto:seuemail@exemplo.com">Email</a>
+          <a class="btn btn-secondary" href="https://github.com/seuusuario" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn btn-secondary" href="https://linkedin.com/in/seuusuario" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn btn-secondary" href="https://twitter.com/seuusuario" target="_blank" rel="noreferrer">X / Twitter</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Feito com HTML, CSS e JavaScript. Ajuste os textos, links e projetos para refletirem seu universo — de preferência com menos clichê e mais substância.
+    </div>
+  </footer>
+
+  <script>
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    const sections = [...document.querySelectorAll('main section[id]')];
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+
+        filterButtons.forEach((btn) => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        projectCards.forEach((card) => {
+          const category = card.dataset.category;
+          const shouldShow = filter === 'all' || category === filter;
+          card.classList.toggle('hidden', !shouldShow);
+        });
+      });
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach((link) => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          });
+        });
+      },
+      {
+        rootMargin: '-35% 0px -50% 0px',
+        threshold: 0.1,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  </script>
+</body>
+</html>
